@@ -53,9 +53,9 @@ plt.plot(swrd,wolfdiff, color='blue', marker="*", )  # Вывод графика
 plt.title("График функции")
 plt.legend(['func'], fontsize="x-large")
 #plt.plot(arr,const,color='red')
-plt.annotate(r'$\lim_{x\to 0}\frac{\sin(x)}{x}= 1$', xy=[0,1],xycoords='data',
-             xytext=[30,30],fontsize=16, textcoords='offset points', arrowprops=dict(arrowstyle="->",
-             connectionstyle="arc3,rad=.2"))
+# plt.annotate(r'$\lim_{x\to 0}\frac{\sin(x)}{x}= 1$', xy=[0,1],xycoords='data',
+#              xytext=[30,30],fontsize=16, textcoords='offset points', arrowprops=dict(arrowstyle="->",
+#              connectionstyle="arc3,rad=.2"))
 
 
 plt.show()

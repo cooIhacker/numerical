@@ -20,9 +20,10 @@ def p(x):
     return 1 / (pow(x - a, alf))
                                                                     #Точность сумм Pимана 10^(-5)
 count_points=[100,1000,10000,100000]
-arr=[1,2,3,4]
-const=[3.52048]*len(arr)
+arr=[]
+const=[3.52048]*len(count_points)
 for n in count_points:
+    arr.append(str(n))
     integral_sum=0
     h = (b - a) / (n - 1)
     for i in range(1, n + 1):  # Через суммы римана

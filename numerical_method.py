@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 
 a = 2.1  # Объявляю переменые
 b = 3.3
-alf = 0.2
+alf = 0.4
 beta = 0
-n = 20
+n = 18                  # 18 min , 38 max
 h = (b - a) / (n - 1)
 integral_sum = 0
 ikf_sum = 0

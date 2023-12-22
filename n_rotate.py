@@ -6,7 +6,7 @@ import pylab
 
 a = 2.1  # Объявляю переменые
 b = 3.3
-alf = 0.2
+alf = 0.4
 values=[]
 #valuesikf=np.array()
 wolfdiff=[]
@@ -19,7 +19,7 @@ def f(x):
 def p(x):
     return 1 / (pow(x - a, alf))
                                                                     #Точность сумм Pимана 10^(-5)
-count_points=[100,1000,10000,100000]
+count_points=[15,20,100,1000,5000,10000,20000,30000,50000]
 arr=[]
 const=[3.52048]*len(count_points)
 for n in count_points:
@@ -54,7 +54,7 @@ for n in count_points:
 
 
 print(values)
-plt.plot(arr,wolfdiff, color='blue', marker="*", )  # Вывод графика
+plt.plot(arr,values, color='blue', marker="*", )  # Вывод графика
 plt.title("График функции")
 plt.legend(['func'], fontsize="x-large")
 #plt.plot(arr,const,color='red')

@@ -6,7 +6,7 @@ a = 2.1  # Объявляю переменые
 b = 3.3
 alf = 0.4
 beta = 0
-n = 18                  # 18 min , 38 max
+n = 30                  # 18 min , 38 max
 h = (b - a) / (n - 1)
 integral_sum = 0
 ikf_sum = 0
@@ -40,29 +40,29 @@ plt.plot(pointsmid, values, color='blue', marker="*", )  # Вывод графи
 plt.title("График функции")
 plt.legend(['func'], title=integral_sum, fontsize="x-large")
 plt.fill_between(pointsmid, values)
-#plt.show()
+plt.show()
 
 
 
 
-
-u = []  # Формирование вектора и матрцы для решения СЛАУ
-for i in range(n):
-    u.append(momentum(i))
-u = np.array(u).reshape((n, 1))
-# print(u)
-matrix = []
-ikf_points = np.linspace(0, b - a, n)
-
-# print(ikf_points)
-for i in range(n):
-    matrix.append(ikf_points ** i)
-matrix = np.array(matrix).reshape(n, n)
-ans = np.linalg.solve(matrix, u)
-# print(ans)
-for i in range(n):
-    ikf_sum += ans[i] * f(points[i])
-print(ikf_sum)                          #Все работает вроде даже на 20 эн считает более менее норм
+#
+# u = []  # Формирование вектора и матрцы для решения СЛАУ
+# for i in range(n):
+#     u.append(momentum(i))
+# u = np.array(u).reshape((n, 1))
+# # print(u)
+# matrix = []
+# ikf_points = np.linspace(0, b - a, n)
+#
+# # print(ikf_points)
+# for i in range(n):
+#     matrix.append(ikf_points ** i)
+# matrix = np.array(matrix).reshape(n, n)
+# ans = np.linalg.solve(matrix, u)
+# # print(ans)
+# for i in range(n):
+#     ikf_sum += ans[i] * f(points[i])
+# print(ikf_sum)                          #Все работает вроде даже на 20 эн считает более менее норм
 
 
 #КФ типа Гаусса

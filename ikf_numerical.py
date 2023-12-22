@@ -1,14 +1,16 @@
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+import sys
+sys.float_info
 
 a = 2.1  # Объявляю переменые
 b = 3.3
-alf = 0.2
+alf = 0.4
 values=[]
-#valuesikf=np.array()
 wolfdiff=[]
-
+sumU=[]
 def momentum(k):
     return ((b - a) ** (k + 1 - alf) / (k + 1 - alf))
 def f(x):
@@ -17,9 +19,8 @@ def f(x):
 def p(x):
     return 1 / (pow(x - a, alf))
 
-count_points=[10,15,25,35,50,100]
-arr=[1,2,3,4,5,6]
-const=[3.52048]*len(arr)
+count_points=[10]
+const=[4.461512705331193]*len(count_points)
 
 for n in count_points:
     ikf_sum=0
@@ -38,24 +39,32 @@ for n in count_points:
         matrix.append(ikf_points ** i)
     matrix = np.array(matrix).reshape(n, n)
     ans = np.linalg.solve(matrix, u)
-    # sabs=0
-    # for i in u:
-    #     sabs+=abs(i)
-    # print(sabs)
-    print(sum(u), n , sep='   ')
+    print(matrix, u)
+    sabs,nabs=0,0
+    for i in ans:
+        sabs+=abs(i)
+        nabs+=i
+
+    sumU.append(sabs)
+
     for i in range(n):
         ikf_sum += ans[i] * f(points[i])
-    wolfdiff.append(math.log10(abs(ikf_sum-3.52048)))                      #Все работает вроде даже на 20 эн считает более менее норм
+    print(points, ans)
+    print(ikf_sum)
+    values.append(ikf_sum)
+    wolfdiff.append(math.log10(abs(ikf_sum-4.461512705)))                      #Все работает вроде даже на 20 эн считает более менее норм
 
 swrd=[]
 for i in count_points: swrd.append(str(i))
+plt.subplot(2,2,1)
 plt.plot(swrd,wolfdiff, color='blue', marker="*", )  # Вывод графика
 plt.title("График функции")
 plt.legend(['func'], fontsize="x-large")
-#plt.plot(arr,const,color='red')
-# plt.annotate(r'$\lim_{x\to 0}\frac{\sin(x)}{x}= 1$', xy=[0,1],xycoords='data',
-#              xytext=[30,30],fontsize=16, textcoords='offset points', arrowprops=dict(arrowstyle="->",
-#              connectionstyle="arc3,rad=.2"))
 
+plt.subplot(2,2,2)
+plt.plot(swrd,values, color='blue', marker="*", )
 
+plt.subplot(2,2,3)
+plt.plot(swrd,sumU, color='blue', marker="*", )
+plt.title("Сумма коэфицентов")
 plt.show()
